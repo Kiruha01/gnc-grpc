@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package items;
+
+service ItemService {
+  rpc GetById (ItemRequest) returns (Item) {}
+  rpc PutItem (Item) returns (ItemResponse) {}
+  rpc DeleteById (ItemRequest) returns (Empty) {}
+  rpc GetManyItems (PaginationRequest) returns (stream Item) {}
+}
+
+message Item {
+  int32 id = 1;
+  string name = 2;
+  string description = 3;
+  float price = 4;
+}
+
+message ItemRequest {
+  int32 id = 1;
+}
+
+message ItemResponse {
+  Item item = 1;
+}
+
+message PaginationRequest {
+  int32 page_number = 1;
+  int32 page_length = 2;
+}
+
+
+message Empty {}
